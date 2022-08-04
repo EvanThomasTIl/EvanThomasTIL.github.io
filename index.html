@@ -124,21 +124,24 @@
 
       loadingBar.style.display = "block";
         var gameInstance = null;  
-     var script = document.createElement("script")      
-     script.src = loaderUrl
+     var script = document.createElement("script")
+      
       script.onload = () => {
-        createUnityInstance(canvas, config, (progress) => {
-          progressBarFull.style.width = 100 * progress + "%";
-        }).then((unityInstance) => {
-            loadingBar.style.display = "none";
+        var game = createUnityInstance(canvas, config, (progress) => {
+          progressBarFull.style.width = 100 * progress + "%"
+        })
+          .then((unityInstance) => {
             gameInstance = unityInstance
-          fullscreenButton.onclick = () => {
-              unityInstance.SetFullscreen(1);
-          };
-        }).catch((message) => {
-          alert(message);
-        });
-      };
+
+            loadingBar.style.display = "none"
+            fullscreenButton.onclick = () => {
+              unityInstance.SetFullscreen(1)
+            }
+          })
+          .catch((message) => {
+            alert(message)
+          })
+      }
 
         const changeCubeSpeed = (cubeSpeed) => {
             gameInstance.SendMessage("SceneManager", "updateCubeSpeed", parseFloat(cubeSpeed));
