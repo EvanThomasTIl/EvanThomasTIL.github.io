@@ -124,8 +124,8 @@
 
       loadingBar.style.display = "block";
         var gameInstance = null;  
-      var script = document.createElement("script");
-      script.src = loaderUrl;
+      var script = document.createElement("script")      
+      script.src = loaderUrl
       script.onload = () => {
         createUnityInstance(canvas, config, (progress) => {
           progressBarFull.style.width = 100 * progress + "%";
@@ -156,8 +156,7 @@
             gameInstance.SendMessage("SceneManager", "destroyCubes");
             console.log("destroyed");
         }
-       
-      
+      document.body.appendChild(script)
     </script>
   </body>
 </html>
